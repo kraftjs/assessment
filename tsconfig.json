@@ -1,0 +1,13 @@
+{
+  "include": ["ts/**/*.ts"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "target": "ES6",
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "strict": true,
+    "allowJs": true
+  }
+}
+

@@ -1,0 +1,20 @@
+{
+  "name": "hls-parse-test",
+  "version": "1.0.0",
+  "description": "Coding test for Playback Quality Optimization",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "@types/node": "^16.0.0",
+    "ts-jest": "^29.1.1",
+    "typed-duration": "^1.0.13",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "jest-junit": "^16.0.0",
+    "ts-unimplemented": "^2.0.0"
+  }
+}
