@@ -32,6 +32,11 @@ export class MediaPlaylist {
     const duration = this.parseDuration(_file);
     const version = this.parseVersion(_file);
 
+    // Ran out of time, but in the future I would instead parse the file
+    // all in one loop through, treating each line as a feed and updating
+    // version and target duration as I reach them. This would also grow
+    // the Segments one segment at a time. Then I would mark ended as true
+    // once I reached the end.
 
     return new MediaPlaylist(true, segments, duration, version);
   }
