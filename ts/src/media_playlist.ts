@@ -13,8 +13,8 @@ export class MediaPlaylist {
   target_duration: MaybeTimeDuration;
   version: number;
 
-  constructor(_segments: MediaSegment[], _duration: number, _version: number) {
-    this.ended = false;
+  constructor(_ended: boolean, _segments: MediaSegment[], _duration: number, _version: number) {
+    this.ended = _ended;
     this.segments = _segments;
     this.target_duration = Duration.seconds.from(_duration); // Initialize with the appropriate value
     this.version = _version;
@@ -33,7 +33,7 @@ export class MediaPlaylist {
     const version = this.parseVersion(_file);
 
 
-    return new MediaPlaylist(segments, duration, version);
+    return new MediaPlaylist(true, segments, duration, version);
   }
 
   private static parseSegments(_file: string): MediaSegment[] {
@@ -42,9 +42,10 @@ export class MediaPlaylist {
     const lines = _file.split(/\r?\n/);
     for (let [index, line] of lines.entries()) {
       line = line.trim();
-      if (line.startsWith('#EXTINF') && index + 2 < lines.length) {
-        const [duration, _] = line.split(',');
-        const url = lines[index + 2];
+      const tag = '#EXTINF:'
+      if (line.startsWith(tag) && index + 2 < lines.length) {
+        const [duration, _] = line.slice(tag.length).split(',');
+        const url = lines[index + 2].trim();
 
         const segment: MediaSegment = {
           duration: Duration.seconds.from(Number(duration)),
